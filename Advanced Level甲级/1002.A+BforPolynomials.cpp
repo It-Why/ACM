@@ -2,30 +2,34 @@
 
 using namespace std;
 
+const double EPS = 1e-8;
+
+double a[1005] = {0};
+double b[1005] = {0};
+double s[1005] = {0};
+
 int main(void)
 {
-    double a[1005] = {0};
-    double b[1005] = {0};
-    double s[1005] = {0};
+
     int k, n;
     double an;
-    cin>>k;
+    scanf("%d", &k);
     while (k--)
     {
-        cin>>n>>an;
+        scanf("%d%lf", &n, &an);
         a[n] = an;
     }
-    cin>>k;
+    scanf("%d", &k);
     while (k--)
     {
-        cin>>n>>an;
+        scanf("%d%lf", &n, &an);
         b[n] = an;
     }
     int xs = 0;
-    for (int i=0; i<20; i++)
+    for (int i=0; i<1001; i++)
     {
         s[i] = a[i] + b[i];
-        if (s[i] != 0.0)
+        if (s[i] < -EPS || s[i] > EPS)
         {
             xs++;
         }
@@ -33,9 +37,9 @@ int main(void)
     cout<<xs;
     for (int i=1001; i>=0; i--)
     {
-        if (s[i] != 0.0)
+        if (s[i] < -EPS || s[i] > EPS)
         {
-            cout<<" "<<i<<" "<<s[i];
+            printf(" %d %.1lf", i, s[i]);
         }
     }
 
